@@ -29,7 +29,10 @@ namespace Repair3.Views
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
             //requests = repairContext.Requests.ToList();
-            requests = repairContext.Requests.Include(r => r.Status).ToList();
+            requests = repairContext.Requests
+                .Include(r => r.Status)
+                .Include(r => r.Executor)
+                .ToList();
             foreach (Request request in requests)
             {
                 viewRequests.Add(request);
