@@ -92,7 +92,7 @@ namespace Repair3.Views
                 ServiceTypeTextBox.Text,
                 FaultTypeTextBox.Text,
                 CompleteNameTextBox.Text,
-                Convert.ToInt32(ExecutorComboBox.SelectedItem.ToString()) + 1);
+                Convert.ToInt32(ExecutorComboBox.SelectedItem.ToString()));
             repairContext.Requests.Add(request);
             repairContext.SaveChanges();
         }
