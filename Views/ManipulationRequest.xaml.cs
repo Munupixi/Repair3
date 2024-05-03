@@ -47,14 +47,17 @@ namespace Repair3.Views
             Repair3Context repairContext = new Repair3Context();
             StatusComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
+            ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2).Select(user => user.Name).ToList();
             RequestIdTextBox.Text = request.RequestId.ToString();
             CreationDateTextBox.Text = request.CreationDate.ToString();
             ExecutorCommentRichTextBox.Document =
                 new FlowDocument(new Paragraph(
                 new Run(request.ExecutorComment?.ToString())));
             StatusComboBox.SelectedIndex = request.StatusId;
+            ExecutorComboBox.SelectedIndex = request.ExecutorId ?? -1;
             FaultTypeTextBox.Text = request.FaultType?.ToString();
             ServiceTypeTextBox.Text = request.ServiceType?.ToString();
+            CompleteNameTextBox.Text = request.CompleteName?.ToString();
         }
         private void DeleteRequest()
         {
