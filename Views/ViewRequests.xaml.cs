@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Repair3.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для ViewRequests.xaml
-    /// </summary>
     public partial class ViewRequests : Page
     {
         List<Request> requests;
@@ -62,11 +59,14 @@ namespace Repair3.Views
 
             IssuedLabel.Content = viewRequests.Count();
             IssuedFromLabel.Content = requests.Count();
-            MainListView.Items.Clear();
-            foreach (Request request in viewRequests)
-            {
-                MainListView.Items.Add(new RequestUserControl(request));
-            }
+
+            RequestsDataGrid.ItemsCourse.Clear();
+            RequestsDataGrid.ItemsCourse = viewRequests;
+            //MainListView.Items.Clear();
+            //foreach (Request request in viewRequests)
+            //{
+            //    MainListView.Items.Add(new RequestUserControl(request));
+            //}
         }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
