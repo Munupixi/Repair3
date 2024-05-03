@@ -30,6 +30,7 @@ namespace Repair3.Views
 
             StatusComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
+            ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2).Select(user => user.Name).ToList();
 
         }
         public ManipulationRequest(Request request)
