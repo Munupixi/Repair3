@@ -5,6 +5,16 @@ namespace Repair3.Models;
 
 public partial class Request
 {
+    public Request(int requestId, DateOnly creationDate, string? executorComment,
+        int statusId, string? serviceType, string? faultType)
+    {
+        RequestId = requestId;
+        CreationDate = creationDate;
+        ExecutorComment = executorComment;
+        StatusId = statusId;
+        ServiceType = serviceType;
+        FaultType = faultType;
+    }
     public int RequestId { get; set; }
 
     public string? CompleteName { get; set; }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Repair3.Models;
 
-namespace Repair3.Models;
+namespace Repair3;
 
 public partial class User
 {
+    internal static User? ActiveUser = null;
+
     public int UserId { get; set; }
 
     public string Login { get; set; } = null!;
