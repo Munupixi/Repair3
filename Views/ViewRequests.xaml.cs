@@ -25,6 +25,10 @@ namespace Repair3.Views
         public ViewRequests()
         {
             InitializeComponent();
+            if (User.ActiveUser.RoleId == 1)
+            {
+                CreateProductButton.Visibility = Visibility.Collapsed;
+            }
             Repair3Context repairContext = new Repair3Context();
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
@@ -43,10 +47,6 @@ namespace Repair3.Views
                     .Include(r => r.Status)
                     .Include(r => r.Executor)
                     .ToList();
-            }
-            foreach (Request request in requests)
-            {
-                viewRequests.Add(request);
             }
             UpdateView();
         }
@@ -76,30 +76,19 @@ namespace Repair3.Views
 
             IssuedLabel.Content = viewRequests.Count();
             IssuedFromLabel.Content = requests.Count();
+
             RequestsDataGrid.ItemsSource = viewRequests;
         }
 
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateView();
-        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) => UpdateView();
 
-        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateView();
-        }
+        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateView();
 
-        private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateView();
-        }
+        private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateView();
 
         private void CreateProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (User.ActiveUser.RoleId == 1)
-            {
-                MainWindow.Frame.Content = new ManipulationRequest();
-            }
+            MainWindow.Frame.Content = new ManipulationRequest();
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -112,8 +101,8 @@ namespace Repair3.Views
 
         private void ManipulationButton_Click(object sender, RoutedEventArgs e)
         {
-            Request request = (sender as FrameworkElement).DataContext as Request;
-            MainWindow.Frame.Content = new ManipulationRequest(request);
+            MainWindow.Frame.Content = new ManipulationRequest(
+                (sender as FrameworkElement).DataContext as Request);
         }
     }
 }

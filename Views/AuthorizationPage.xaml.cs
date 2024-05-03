@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Repair3.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthorizationPage.xaml
-    /// </summary>
     public partial class AuthorizationPage : Page
     {
         public AuthorizationPage()
@@ -32,16 +29,17 @@ namespace Repair3.Views
             if (user == null)
             {
                 MessageBox.Show("Пользователь не найден");
-                return;
             }
-            if (user.Password != PasswordTextBox.Text)
+            else if (user.Password != PasswordTextBox.Text)
             {
                 MessageBox.Show("Пароль не подходит");
-                return;
             }
-            MessageBox.Show("Авторизация прошла успешно");
-            User.ActiveUser = user;
-            MainWindow.Frame.Content = new ViewRequests();
+            else
+            {
+                MessageBox.Show("Авторизация прошла успешно");
+                User.ActiveUser = user;
+                MainWindow.Frame.Content = new ViewRequests();
+            }
         }
     }
 }

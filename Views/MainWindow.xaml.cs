@@ -21,7 +21,6 @@ namespace Repair3.Views
         public MainWindow()
         {
             InitializeComponent();
-            Repair3Context repairContext = new Repair3Context();
             Frame = MainFrame;
             Frame.Content = new AuthorizationPage();
         }
