@@ -60,8 +60,8 @@ namespace Repair3.Views
             IssuedLabel.Content = viewRequests.Count();
             IssuedFromLabel.Content = requests.Count();
 
-            RequestsDataGrid.ItemsCourse.Clear();
-            RequestsDataGrid.ItemsCourse = viewRequests;
+            RequestsDataGrid.Items.Clear();
+            RequestsDataGrid.ItemsSource = viewRequests;
             //MainListView.Items.Clear();
             //foreach (Request request in viewRequests)
             //{
