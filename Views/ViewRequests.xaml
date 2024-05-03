@@ -73,5 +73,6 @@
             <Label Content="из" />
             <Label x:Name="IssuedFromLabel" />
         </StackPanel>
+        <Label Grid.Column="1" x:Name="Rolelabel" Content="Label" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

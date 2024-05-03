@@ -53,8 +53,8 @@ namespace Repair3.Views
             ExecutorCommentRichTextBox.Document =
                 new FlowDocument(new Paragraph(
                 new Run(request.ExecutorComment?.ToString())));
-            StatusComboBox.SelectedIndex = request.StatusId;
-            ExecutorComboBox.SelectedIndex = request.ExecutorId ?? -1;
+            StatusComboBox.SelectedIndex = request.StatusId - 1;
+            ExecutorComboBox.SelectedIndex = request.ExecutorId - 1 ?? -1;
             FaultTypeTextBox.Text = request.FaultType?.ToString();
             ServiceTypeTextBox.Text = request.ServiceType?.ToString();
             CompleteNameTextBox.Text = request.CompleteName?.ToString();
