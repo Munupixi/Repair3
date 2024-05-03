@@ -6,7 +6,7 @@ namespace Repair3.Models;
 public partial class Request
 {
     public Request(int requestId, DateOnly creationDate, string? executorComment,
-        int statusId, string? serviceType, string? faultType)
+        int statusId, string? serviceType, string? faultType, string completeName, int executorId)
     {
         RequestId = requestId;
         CreationDate = creationDate;
@@ -14,6 +14,8 @@ public partial class Request
         StatusId = statusId;
         ServiceType = serviceType;
         FaultType = faultType;
+        CompleteName = completeName;
+        ExecutorId = executorId;
     }
     public int RequestId { get; set; }
 

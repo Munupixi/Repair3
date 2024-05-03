@@ -76,13 +76,15 @@ namespace Repair3.Views
         {
             Repair3Context repairContext = new Repair3Context();
             Request request = new Request(
-            Convert.ToInt32(RequestIdTextBox.Text),
-            DateOnly.Parse(CreationDateTextBox.Text),
-            new TextRange(ExecutorCommentRichTextBox.Document.ContentStart,
-            ExecutorCommentRichTextBox.Document.ContentEnd).Text,
-            StatusComboBox.SelectedIndex + 1,
-            ServiceTypeTextBox.Text,
-            FaultTypeTextBox.Text);
+                Convert.ToInt32(RequestIdTextBox.Text),
+                DateOnly.Parse(CreationDateTextBox.Text),
+                new TextRange(ExecutorCommentRichTextBox.Document.ContentStart,
+                ExecutorCommentRichTextBox.Document.ContentEnd).Text,
+                StatusComboBox.SelectedIndex + 1,
+                ServiceTypeTextBox.Text,
+                FaultTypeTextBox.Text,
+                CompleteNameTextBox.Text,
+                ExecutorComboBox.SelectedIndex + 1);
             repairContext.Requests.Add(request);
             repairContext.SaveChanges();
         }
@@ -109,10 +111,24 @@ namespace Repair3.Views
                     MessageBoxImage.Error);
                 return false;
             }
+            if (CompleteNameTextBox.Text.Length > 150)
+            {
+                MessageBox.Show("ФИО заказчика не должен быть длинее 150 симыволов!",
+                    "Ошибка", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return false;
+            }
 
             if (StatusComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Необходимо выбрать статус!",
+                    "Ошибка", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return false;
+            }
+            if (ExecutorComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Необходимо выбрать исполнителя!",
                     "Ошибка", MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return false;

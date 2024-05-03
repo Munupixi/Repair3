@@ -71,7 +71,7 @@
                     <TextBox Grid.Row="5" x:Name="ServiceTypeTextBox"/>
                     <Label Content="Исполнитель" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <ComboBox x:Name="ExecutorComboBox" Grid.Row="7"/>
-                    <Label Grid.Row="8" Content="ФИО исполнителя" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Label Grid.Row="8" Content="ФИО заказчика" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     <TextBox Grid.Row="9" x:Name="CompleteNameTextBox"/>
 
                 </Grid>
