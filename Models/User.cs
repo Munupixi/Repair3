@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Repair3.Models;
 
-namespace Repair3;
+namespace Repair3.Models;
 
 public partial class User
 {

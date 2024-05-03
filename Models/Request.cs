@@ -7,6 +7,8 @@ public partial class Request
 {
     public int RequestId { get; set; }
 
+    public string? CompleteName { get; set; }
+
     public DateOnly CreationDate { get; set; }
 
     public string? ExecutorComment { get; set; }
