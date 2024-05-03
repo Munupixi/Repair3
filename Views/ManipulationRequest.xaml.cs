@@ -18,10 +18,21 @@ namespace Repair3.Views
 {
     public partial class ManipulationRequest : Page
     {
-        public ManipulationRequest()
+        public void SetUp() // загрузка данных в combo boxs
+        {
+            Repair3Context repairContext = new Repair3Context();
+            StatusComboBox.ItemsSource =
+                repairContext.Statuses.Select(status => status.Title).ToList();
+            ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2)
+                .Select(user => user.Name).ToList();
+        }
+
+        public ManipulationRequest() // Создание
         {
             InitializeComponent();
+            SetUp();
             Repair3Context repairContext = new Repair3Context();
+
             if (repairContext.Requests.Count() == 0)
             {
                 RequestIdTextBox.Text = "1";
@@ -31,20 +42,12 @@ namespace Repair3.Views
                 RequestIdTextBox.Text = (repairContext.Requests.Max(
                 request => request.RequestId) + 1).ToString();
             }
-            
-
-            StatusComboBox.ItemsSource =
-                repairContext.Statuses.Select(status => status.Title).ToList();
-            ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2).Select(user => user.Name).ToList();
-
         }
-        public ManipulationRequest(Request request)
+
+        public ManipulationRequest(Request request) // редактирование
         {
             InitializeComponent();
-            Repair3Context repairContext = new Repair3Context();
-            StatusComboBox.ItemsSource =
-                repairContext.Statuses.Select(status => status.Title).ToList();
-            ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2).Select(user => user.Name).ToList();
+            SetUp();
             RequestIdTextBox.Text = request.RequestId.ToString();
             CreationDateTextBox.Text = request.CreationDate.ToString();
             ExecutorCommentRichTextBox.Document =
@@ -55,7 +58,14 @@ namespace Repair3.Views
             FaultTypeTextBox.Text = request.FaultType?.ToString();
             ServiceTypeTextBox.Text = request.ServiceType?.ToString();
             CompleteNameTextBox.Text = request.CompleteName?.ToString();
+
+            if (User.ActiveUser.RoleId == 2) // ограничение редактирования у исполнителя
+            {
+                CreationDateTextBox.IsEnabled = ExecutorComboBox.IsEnabled =
+                    CompleteNameTextBox.IsEnabled = false;
+            }
         }
+
         private void DeleteRequest()
         {
             Repair3Context repairContext = new Repair3Context();
@@ -69,6 +79,7 @@ namespace Repair3.Views
                 repairContext.SaveChanges();
             }
         }
+
         private void CreateRequest()
         {
             Repair3Context repairContext = new Repair3Context();
@@ -85,6 +96,7 @@ namespace Repair3.Views
             repairContext.Requests.Add(request);
             repairContext.SaveChanges();
         }
+
         private bool IsValid()
         {
             if (!DateOnly.TryParse(CreationDateTextBox.Text, out _))
@@ -133,6 +145,7 @@ namespace Repair3.Views
 
             return true;
         }
+
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
             if (!IsValid()) return;
