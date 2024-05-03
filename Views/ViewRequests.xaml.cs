@@ -25,9 +25,9 @@ namespace Repair3.Views
         public ViewRequests()
         {
             InitializeComponent();
-            Rolelabel.Content = User.ActiveUser.Role.Title;
 
             Repair3Context repairContext = new Repair3Context();
+            Rolelabel.Content = repairContext.Roles.FirstOrDefault(r => r.RoleId == User.ActiveUser.RoleId).Title;
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
