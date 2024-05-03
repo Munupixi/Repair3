@@ -66,7 +66,7 @@
         </DataGrid>
 
         <Label x:Name="NameLabel" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" />
-        <Label Content="Ремонт оборудования - заявки" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10,0,0,0" />
+        <Label Content="Заявки" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10,0,0,0" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">
             <Label Content="Выдано:" />
             <Label x:Name="IssuedLabel" />

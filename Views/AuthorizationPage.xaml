@@ -38,6 +38,6 @@
             <TextBox x:Name="PasswordTextBox" Grid.Row="4" TextWrapping="Wrap" ToolTip="Пароль" MinWidth="60" VerticalContentAlignment="Center" />
             <Button x:Name="EnterButton" Grid.Row="6" Content="Войти" Click="EnterButton_Click" />
         </Grid>
-        <Label Grid.Column="1" Content="Ремонт оборудования" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" />
+        <Label Grid.Column="1" Content="Ремонт заявок" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" />
     </Grid>
 </Page>
