@@ -1,10 +1,10 @@
 ﻿<Page x:Class="Repair3.Views.ViewRequests"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Repair3.Views"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
         Title="Отображение заявок">
     <Grid>
@@ -32,7 +32,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox x:Name="SearchTextBox" TextWrapping="Wrap" Grid.Row="1" MinWidth="120" TextChanged="SearchTextBox_TextChanged"/>
+            <TextBox x:Name="SearchTextBox" TextWrapping="Wrap" Grid.Row="1" MinWidth="120" TextChanged="SearchTextBox_TextChanged" />
             <Label Content="Сортировка по дате" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" />
             <ComboBox x:Name="SortComboBox" Grid.Row="3" SelectionChanged="SortComboBox_SelectionChanged">
                 <ComboBoxItem Content="Возрастающая" />
@@ -40,25 +40,37 @@
             </ComboBox>
             <Label Content="Фильтрация по статусу" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" />
             <ComboBox x:Name="FilterComboBox" Grid.Row="5" Height="30" VerticalAlignment="Bottom" SelectionChanged="FilterComboBox_SelectionChanged"></ComboBox>
-            <Button x:Name="CreateProductButton" Grid.Row="7" Content="Создать заявку" Click="CreateProductButton_Click"/>
-            <Button x:Name="ResetButton" Grid.Row="9" Content="Сбросить" Click="ResetButton_Click"/>
+            <Button x:Name="CreateProductButton" Grid.Row="7" Content="Создать заявку" Click="CreateProductButton_Click" />
+            <Button x:Name="ResetButton" Grid.Row="9" Content="Сбросить" Click="ResetButton_Click" />
         </Grid>
 
-        <ListView x:Name="MainListView" Grid.Column="1" Grid.Row="1">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="2"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+        <DataGrid x:Name="RequestsDataGrid" Grid.Column="1" Grid.Row="1"
+  HorizontalScrollBarVisibility="Hidden"
+  AutoGenerateColumns="False" BorderBrush="{x:Null}" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID заявки" Binding="{Binding Path=RequestId}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=CreationDate}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Path=StatusId}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=ExecutorId}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип оборудования" Binding="{Binding Path=ServiceTypeId}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип ошибки" Binding="{Binding Path=FaultTypeId}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=ExecutorComment}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Label x:Name="NameLabel" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" />
         <Label Content="Ремонт оборудования - заявки" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10,0,0,0" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">
             <Label Content="Выдано:" />
-            <Label x:Name="IssuedLabel"/>
+            <Label x:Name="IssuedLabel" />
             <Label Content="из" />
-            <Label x:Name="IssuedFromLabel"/>
+            <Label x:Name="IssuedFromLabel" />
         </StackPanel>
     </Grid>
 </Page>
