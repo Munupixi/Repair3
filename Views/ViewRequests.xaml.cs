@@ -25,23 +25,22 @@ namespace Repair3.Views
         public ViewRequests()
         {
             InitializeComponent();
-            if (User.ActiveUser.RoleId == 1)
-            {
-                CreateProductButton.Visibility = Visibility.Collapsed;
-            }
+
             Repair3Context repairContext = new Repair3Context();
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
-            if (User.ActiveUser.RoleId == 2)
+            if (User.ActiveUser.RoleId == 2) // исполнитель
             {
+                CreateProductButton.Visibility = Visibility.Collapsed;
+
                 requests = repairContext.Requests
                     .Where(r => r.Executor.UserId == User.ActiveUser.UserId)
                     .Include(r => r.Status)
                     .Include(r => r.Executor)
                     .ToList();
             }
-            else
+            else // администратор
             {
                 requests = repairContext.Requests
                     .Include(r => r.Status)
@@ -58,14 +57,14 @@ namespace Repair3.Views
             {
                 if ((!request.ServiceType.ToLower().Contains(SearchTextBox.Text.ToLower()) &&
                     !request.FaultType.ToLower().Contains(SearchTextBox.Text.ToLower()))
-                    || (request.StatusId != FilterComboBox.SelectedIndex + 1 && FilterComboBox.SelectedIndex != -1))
+                    || (request.StatusId != FilterComboBox.SelectedIndex + 1 && FilterComboBox.SelectedIndex != -1))  // Фильтрация, поиск
                 {
                     continue;
                 }
                 viewRequests.Add(request);
             }
 
-            if (SortComboBox.SelectedIndex == 1)
+            if (SortComboBox.SelectedIndex == 1) // сортировка
             {
                 viewRequests = viewRequests.OrderByDescending(request => request.CreationDate).ToList();
             }
@@ -74,8 +73,8 @@ namespace Repair3.Views
                 viewRequests = viewRequests.OrderBy(request => request.CreationDate).ToList();
             }
 
-            IssuedLabel.Content = viewRequests.Count();
-            IssuedFromLabel.Content = requests.Count();
+            IssuedLabel.Content = viewRequests.Count(); // число выданных
+            IssuedFromLabel.Content = requests.Count(); // общее число
 
             RequestsDataGrid.ItemsSource = viewRequests;
         }
