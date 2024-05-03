@@ -53,7 +53,8 @@
                 <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=Executor.Name}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тип оборудования" Binding="{Binding Path=ServiceType}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тип ошибки" Binding="{Binding Path=FaultType}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=ExecutorComment}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Комментарий исполнителя" Binding="{Binding Path=ExecutorComment}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО заказчика" Binding="{Binding Path=CompleteName}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
