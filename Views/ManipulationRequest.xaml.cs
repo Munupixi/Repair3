@@ -54,7 +54,7 @@ namespace Repair3.Views
                 new FlowDocument(new Paragraph(
                 new Run(request.ExecutorComment?.ToString())));
             StatusComboBox.SelectedIndex = request.StatusId - 1;
-            ExecutorComboBox.SelectedIndex = request.ExecutorId - 1 ?? -1;
+            ExecutorComboBox.SelectedItem = request.ExecutorId ?? -1;
             FaultTypeTextBox.Text = request.FaultType?.ToString();
             ServiceTypeTextBox.Text = request.ServiceType?.ToString();
             CompleteNameTextBox.Text = request.CompleteName?.ToString();
