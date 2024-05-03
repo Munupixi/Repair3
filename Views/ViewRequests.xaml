@@ -50,7 +50,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID заявки" Binding="{Binding Path=RequestId}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=CreationDate}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status.Title}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=ExecutorId}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тип оборудования" Binding="{Binding Path=ServiceType}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тип ошибки" Binding="{Binding Path=FaultType}" IsReadOnly="True"></DataGridTextColumn>
