@@ -95,5 +95,11 @@ namespace Repair3.Views
             SearchTextBox.Text = String.Empty;
             UpdateView();
         }
+
+        private void ManipulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Request request = (sender as FrameworkElement).DataContext as Request;
+            MainWindow.Frame.Content = new ManipulationRequest(request);
+        }
     }
 }
