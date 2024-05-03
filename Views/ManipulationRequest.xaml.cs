@@ -24,7 +24,7 @@ namespace Repair3.Views
             StatusComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
             ExecutorComboBox.ItemsSource = repairContext.Users.Where(user => user.RoleId == 2)
-                .Select(user => user.Name).ToList();
+                .Select(user => user.UserId).ToList();
         }
 
         public ManipulationRequest() // Создание
@@ -92,7 +92,7 @@ namespace Repair3.Views
                 ServiceTypeTextBox.Text,
                 FaultTypeTextBox.Text,
                 CompleteNameTextBox.Text,
-                ExecutorComboBox.SelectedIndex + 1);
+                Convert.ToInt32(ExecutorComboBox.SelectedItem.ToString()) + 1);
             repairContext.Requests.Add(request);
             repairContext.SaveChanges();
         }
