@@ -25,8 +25,16 @@ namespace Repair3.Views
         {
             InitializeComponent();
             Repair3Context repairContext = new Repair3Context();
-            RequestIdTextBox.Text = (repairContext.Requests.Max(
+            if (repairContext.Requests.Count() == 0)
+            {
+                RequestIdTextBox.Text = "1";
+            }
+            else
+            {
+                RequestIdTextBox.Text = (repairContext.Requests.Max(
                 request => request.RequestId) + 1).ToString();
+            }
+            
 
             StatusComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
@@ -69,7 +77,7 @@ namespace Repair3.Views
             DateOnly.Parse(CreationDateTextBox.Text),
             new TextRange(ExecutorCommentRichTextBox.Document.ContentStart,
             ExecutorCommentRichTextBox.Document.ContentEnd).Text,
-            StatusComboBox.SelectedIndex,
+            StatusComboBox.SelectedIndex + 1,
             ServiceTypeTextBox.Text,
             FaultTypeTextBox.Text);
             repairContext.Requests.Add(request);

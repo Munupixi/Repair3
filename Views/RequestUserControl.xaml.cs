@@ -33,7 +33,7 @@ namespace Repair3.Views
             CreationDateTextBlock.Text = request.CreationDate.ToString();
             StatusTextBlock.Text = request.StatusId.ToString();
             StatusTextBlock.Text = repairContext.Statuses.FirstOrDefault(s => s.StatusId == request.StatusId).Title.ToString() ?? "null";
-            ExecutorTextBlock.Text = request.ExecutorComment?.ToString();
+            ExecutorTextBlock.Text = repairContext.Users.FirstOrDefault(u => u.UserId == request.ExecutorId).Name.ToString() ?? "null";
             ServiceTypeTextBlock.Text = request.ServiceType?.ToString();
             FaultTypeTextBlock.Text = request.FaultType?.ToString();
             ExecutorCommentRichTextBox.Document =
