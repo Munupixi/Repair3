@@ -1,4 +1,5 @@
-﻿using Repair3.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Repair3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace Repair3.Views
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
-            requests = repairContext.Requests.ToList();
+            //requests = repairContext.Requests.ToList();
+            requests = repairContext.Requests.Include(r => r.Status).ToList();
             foreach (Request request in requests)
             {
                 viewRequests.Add(request);
