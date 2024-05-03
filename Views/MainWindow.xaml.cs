@@ -16,9 +16,13 @@ namespace Repair3
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Frame Frame;
         public MainWindow()
         {
             InitializeComponent();
+            RepairContext repairContext = new RepairContext();
+            Frame = MainFrame;
+            Frame.Content = new AuthorizationPage();
         }
     }
 }
