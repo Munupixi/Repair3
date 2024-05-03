@@ -114,6 +114,9 @@ public partial class Repair3Context : DbContext
             entity.HasIndex(e => e.StatusId, "Status_Id");
 
             entity.Property(e => e.RequestId).HasColumnName("Request_Id");
+            entity.Property(e => e.CompleteName)
+                .HasMaxLength(150)
+                .HasColumnName("Complete_Name");
             entity.Property(e => e.CreationDate).HasColumnName("Creation_Date");
             entity.Property(e => e.ExecutorComment)
                 .HasColumnType("text")
