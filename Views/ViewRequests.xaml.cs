@@ -59,9 +59,8 @@ namespace Repair3.Views
 
             IssuedLabel.Content = viewRequests.Count();
             IssuedFromLabel.Content = requests.Count();
-
-            RequestsDataGrid.Items.Clear();
             RequestsDataGrid.ItemsSource = viewRequests;
+            string у = viewRequests[0].Status.Title;
             //MainListView.Items.Clear();
             //foreach (Request request in viewRequests)
             //{
