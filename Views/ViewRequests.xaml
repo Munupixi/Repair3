@@ -57,7 +57,7 @@
                 <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="manipulation" Background="Transparent" BorderBrush="Transparent">манипулирование</Button>
+                            <Button x:Name="ManipulationButton" Background="Transparent" BorderBrush="Transparent" Click="ManipulationButton_Click">манипулирование</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
