@@ -28,7 +28,6 @@ namespace Repair3.Views
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
-            //requests = repairContext.Requests.ToList();
             requests = repairContext.Requests
                 .Include(r => r.Status)
                 .Include(r => r.Executor)
@@ -65,11 +64,6 @@ namespace Repair3.Views
             IssuedLabel.Content = viewRequests.Count();
             IssuedFromLabel.Content = requests.Count();
             RequestsDataGrid.ItemsSource = viewRequests;
-            //MainListView.Items.Clear();
-            //foreach (Request request in viewRequests)
-            //{
-            //    MainListView.Items.Add(new RequestUserControl(request));
-            //}
         }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
