@@ -27,7 +27,7 @@ namespace Repair3.Views
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            RepairContext context = new RepairContext();
+            Repair3Context context = new Repair3Context();
             User? user = context.Users.FirstOrDefault(u => u.Login == LoginTextBox.Text);
             if (user == null)
             {
