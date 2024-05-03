@@ -44,13 +44,14 @@
             <Button x:Name="ResetButton" Grid.Row="9" Content="Сбросить" Click="ResetButton_Click"/>
         </Grid>
 
-        <ListView x:Name="MainListView" Grid.Column="1" Grid.Row="1">
+        <!--<ListView x:Name="MainListView" Grid.Column="1" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="2"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </ListView>
+        </ListView>-->
+        <DataGrid Grid.Column="1" Grid.Row="1"/>
 
         <Label x:Name="NameLabel" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" />
         <Label Content="Ремонт оборудования - заявки" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="10,0,0,0" />
