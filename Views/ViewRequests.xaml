@@ -45,8 +45,7 @@
         </Grid>
 
         <DataGrid x:Name="RequestsDataGrid" Grid.Column="1" Grid.Row="1"
-  HorizontalScrollBarVisibility="Hidden"
-  AutoGenerateColumns="False" BorderBrush="{x:Null}" HeadersVisibility="Column">
+            AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID заявки" Binding="{Binding Path=RequestId}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата создания" Binding="{Binding Path=CreationDate}" IsReadOnly="True"></DataGridTextColumn>
@@ -58,7 +57,7 @@
                 <DataGridTemplateColumn Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="manipulation" Background="Transparent" BorderBrush="Transparent">манипулирование</Button>
+                            <Button x:Name="manipulation">манипулирование</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
