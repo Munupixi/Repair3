@@ -19,8 +19,9 @@ namespace Repair3.Views
 {
     public partial class ViewRequests : Page
     {
-        List<Request> requests;
-        List<Request> viewRequests = new List<Request>();
+        private List<Request> requests;
+        private List<Request> viewRequests = new List<Request>();
+
         public ViewRequests()
         {
             InitializeComponent();
@@ -28,16 +29,28 @@ namespace Repair3.Views
             FilterComboBox.ItemsSource =
                 repairContext.Statuses.Select(status => status.Title).ToList();
 
-            requests = repairContext.Requests
-                .Include(r => r.Status)
-                .Include(r => r.Executor)
-                .ToList();
+            if (User.ActiveUser.RoleId == 2)
+            {
+                requests = repairContext.Requests
+                    .Where(r => r.Executor.UserId == User.ActiveUser.UserId)
+                    .Include(r => r.Status)
+                    .Include(r => r.Executor)
+                    .ToList();
+            }
+            else
+            {
+                requests = repairContext.Requests
+                    .Include(r => r.Status)
+                    .Include(r => r.Executor)
+                    .ToList();
+            }
             foreach (Request request in requests)
             {
                 viewRequests.Add(request);
             }
             UpdateView();
         }
+
         private void UpdateView()
         {
             viewRequests.Clear();
@@ -65,6 +78,7 @@ namespace Repair3.Views
             IssuedFromLabel.Content = requests.Count();
             RequestsDataGrid.ItemsSource = viewRequests;
         }
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateView();

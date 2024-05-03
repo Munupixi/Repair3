@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Repair3.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для ManipulationRequest.xaml
-    /// </summary>
     public partial class ManipulationRequest : Page
     {
         public ManipulationRequest()
